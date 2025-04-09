@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleInfoTrackScraperApi", "GoogleInfoTrackScraperApi\GoogleInfoTrackScraperApi.csproj", "{1121A10B-265D-49A3-AAA9-80D23694A111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrapingService", "ScrapingService\ScrapingService.csproj", "{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1121A10B-265D-49A3-AAA9-80D23694A111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1121A10B-265D-49A3-AAA9-80D23694A111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1121A10B-265D-49A3-AAA9-80D23694A111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1121A10B-265D-49A3-AAA9-80D23694A111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+@GoogleInfoTrackScraperApi_HostAddress = http://localhost:5287
+
+GET {{GoogleInfoTrackScraperApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
