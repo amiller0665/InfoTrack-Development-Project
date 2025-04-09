@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ScrapingService;
 
-namespace GoogleInfoTrackScraperApi.Controllers
+namespace GoogleAppearancesApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

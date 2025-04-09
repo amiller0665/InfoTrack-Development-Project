@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleInfoTrackScraperApi", "GoogleInfoTrackScraperApi\GoogleInfoTrackScraperApi.csproj", "{1121A10B-265D-49A3-AAA9-80D23694A111}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAppearancesApi", "GoogleAppearancesApi\GoogleAppearancesApi.csproj", "{1121A10B-265D-49A3-AAA9-80D23694A111}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrapingService", "ScrapingService\ScrapingService.csproj", "{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}"
 EndProject
