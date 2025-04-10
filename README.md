@@ -51,7 +51,7 @@ cd InfoTrack-Development-Project
 
   You should be able to see the table created in your local db server: (localdb)\MSSQLLocalDB
 
-  Within the GoogleAppearances project (GoogleAppearances/FakeDataScript/CreateGoogleAppearancesDatabase.sql) there is a SQL script which will insert fake data into the DB so that the graph function has data to display. Please Run that on the table created. 
+  Within the GoogleAppearances project (GoogleAppearances/FakeDataScript/CreateGoogleAppearancesData.sql) there is a SQL script which will insert fake data into the DB so that the graph function has data to display. Please Run that on the table created. 
 
 3. **Run the Project**
    You can either use Visual Studio or the CLI to run the application:
