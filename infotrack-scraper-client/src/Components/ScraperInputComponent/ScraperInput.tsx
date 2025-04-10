@@ -7,6 +7,8 @@ const ScraperInput = () => {
   const [url, setUrl] = useState('');
   const [results, setResults] = useState<number[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState(false); // New state to track if a search has been attempted
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
@@ -21,12 +23,15 @@ const ScraperInput = () => {
 
     setLoading(true);
     setResults([]);
+    setError(null);
 
     try {
       const data = await fetchGoogleAppearances(query, url);
       setResults(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
+      setHasSearched(true); // Mark that a search has been attempted
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      setError('There was an error with the request.');
     } finally {
       setLoading(false);
     }
@@ -55,11 +60,24 @@ const ScraperInput = () => {
           <span className="loading-text">Loading...</span>
         </div>
       )}
-      <ul className="result-list">
-        {results.map((result, index) => (
-          <li key={index} className="result-item">{result}</li>
-        ))}
-      </ul>
+      {error && (
+        <div>
+          <p className="error-text">{error}</p>
+        </div>
+      )}
+      {!loading && !error && results.length > 0 && (
+        <div>
+          <p>The requested URL appeared at indexes:</p>
+          <p className="result-text">{results.join(', ')}</p>
+        </div>
+      )}
+      {!loading && !error && hasSearched && results.length === 0 && (
+        <div>
+          <p className="result-text">
+            The requested URL did not appear in any of the top 100 searches for that phrase.
+          </p>
+        </div>
+      )}
     </div>
   );
 };
