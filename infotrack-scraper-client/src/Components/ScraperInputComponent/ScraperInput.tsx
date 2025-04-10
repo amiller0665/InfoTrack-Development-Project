@@ -5,7 +5,7 @@ import { fetchGoogleAppearances } from '../FetchGoogleAppearancesComponent/fetch
 const ScraperInput = () => {
   const [query, setQuery] = useState('');
   const [url, setUrl] = useState('');
-  const [results, setResults] = useState<number[]>([]);
+  const [results, setResults] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false); // New state to track if a search has been attempted

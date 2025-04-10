@@ -1,6 +1,6 @@
 import config from '../../config';
 
-export const fetchGoogleAppearances = async (searchPhrase: string, url: string): Promise<number[]> => {
+export const fetchGoogleAppearances = async (searchPhrase: string, url: string): Promise<string[]> => {
   if (!searchPhrase || !url) {
     throw new Error('Search phrase and URL are required');
   }
@@ -23,6 +23,6 @@ export const fetchGoogleAppearances = async (searchPhrase: string, url: string):
     throw new Error('Network response was not ok');
   }
 
-  const data: number[] = await response.json();
+  const data: string[] = await response.json();
   return data;
 };
