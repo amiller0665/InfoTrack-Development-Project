@@ -67,6 +67,8 @@ cd InfoTrack-Development-Project
    - HTTP: `http://localhost:5287`
    - HTTPS: `https://localhost:7048`
 
+   **Please ensure you start the https://localhost:7048 port as that is what the react app points to**
+
 5. **Edit Your Environment**
    - Ensure the CORS policy in `Program.cs` matches the domain of any front-end app.
      Default setup:
