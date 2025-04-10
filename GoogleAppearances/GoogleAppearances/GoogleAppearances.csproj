@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ScrapingService\ScrapingService.csproj" />
+      <ProjectReference Include="..\GoogleAppearances.Services\GoogleAppearances.Services.csproj" />
     </ItemGroup>
 
 </Project>

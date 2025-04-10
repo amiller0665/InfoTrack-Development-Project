@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ScrapingService;
+namespace GoogleAppearances.Services;
 
 public static class HtmlResultParser
 {

@@ -1,3 +1,5 @@
+import config from '../../config';
+
 export const fetchGoogleAppearances = async (searchPhrase: string, url: string): Promise<number[]> => {
   if (!searchPhrase || !url) {
     throw new Error('Search phrase and URL are required');
@@ -7,7 +9,15 @@ export const fetchGoogleAppearances = async (searchPhrase: string, url: string):
   const encodedUrl = encodeURIComponent(url.trim()); // Encode the URL to make it safe for query parameters
 
   const response = await fetch(
-    `https://localhost:7048/api/GoogleAppearances/GetCurrentAppearances/${formattedQuery}/${encodedUrl}`
+    `${config.apiBaseUrl}/api/GoogleAppearances/GetCurrentAppearances/${formattedQuery}/${encodedUrl}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      credentials: 'include'
+    }
   );
 
   if (!response.ok) {

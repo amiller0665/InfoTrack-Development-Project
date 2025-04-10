@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-
-namespace ScrapingService
+﻿namespace GoogleAppearances.Services
 {
     public interface IGoogleSearchScraperService
     {

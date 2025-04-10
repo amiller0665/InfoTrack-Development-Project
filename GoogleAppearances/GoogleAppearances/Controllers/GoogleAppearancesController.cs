@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ScrapingService;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using GoogleAppearances.Services;
 
-namespace GoogleAppearancesApi.Controllers
+namespace GoogleAppearances.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
