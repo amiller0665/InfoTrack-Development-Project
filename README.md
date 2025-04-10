@@ -71,7 +71,7 @@ cd InfoTrack-Development-Project
    - Ensure the CORS policy in `Program.cs` matches the domain of any front-end app.
      Default setup:
      ```csharp
-     policy.WithOrigins("http://localhost:3000") // React development server
+     policy.WithOrigins("http://localhost:3000")
            .AllowAnyHeader()
            .AllowAnyMethod()
            .AllowCredentials();
