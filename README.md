@@ -1,9 +1,9 @@
 # **InfoTrack Development Project**
 
 ## **Overview**
-This project consists of 2 components, in the back-end is the **GoogleAppearances Scraper** and in the front-end the **infotrack-scraper-client**. 
+This project consists of 2 components, in the back-end is the **GoogleAppearances WebApi** and in the front-end the **infotrack-scraper-client**. 
 
-The GoogleAppearances Scraper is a web service designed to scrape Google search results and identify the positions where a specific URL appears. This API accepts a search query and a target URL, performs a Google search, and returns a list of indices where the target URL appears in the search results.
+The GoogleAppearances Web Api is a web service designed to scrape Google search results and identify the positions where a specific URL appears. This API accepts a search query and a target URL, performs a Google search, and returns a list of indices where the target URL appears in the search results. The project also contains a repository that has a database attached to it. I added the database so that the user does not need to search google again everytime they want to see a result. Instead the days search is stored in the database, and we check if there is already a search result for that day if the user searches again and return that instead.
 
 The react front-end is a simple SPA that takes a google search phrase and matching url and fetches the data from the backend and then displays the results.
 
@@ -51,6 +51,8 @@ cd InfoTrack-Development-Project
 
   You should be able to see the table created in your local db server: (localdb)\MSSQLLocalDB
 
+  Within the GoogleAppearances project (GoogleAppearances/FakeDataScript/CreateGoogleAppearancesDatabase.sql) there is a SQL script which will insert fake data into the DB so that the graph function has data to display. Please Run that on the table created. 
+
 3. **Run the Project**
    You can either use Visual Studio or the CLI to run the application:
    - **Via Visual Studio:**
@@ -93,32 +95,21 @@ To start the React page, please navigate to `.\infotrack-scraper-client\` and ru
 
 #### **GET** `/api/GoogleAppearances/GetCurrentAppearances/{query}/{url}`
 - **Description:** Scrapes Google search results for the specified query and identifies appearances of the target URL.
-  
-- **Parameters:**
-  - `query` (string): The Google search query.
-  - `url` (string): The target URL to search for in the results.
-  
-- **Response:**
-  - **Status 200 OK:**
-    Returns a list of indices where the target URL appears:
-    ```json
-    [1, 3, 8]
-    ```
-  - **Status 400 Bad Request:**
-    Indicates that either `query` or `url` is missing or invalid:
-    ```json
-    {
-        "statusCode": 400,
-        "message": "Request parameters cannot be null or empty."
-    }
-    ```
-  - **Status 500 Server Error:**
-    Returns an error message if the scraper fails:
-    ```json
-    {
-        "message": "An error occurred while scraping..."
-    }
-    ```
+
+#### **GET** `/api/SearchResults/Query/{searchQuery}`
+- **Description:** Retrieves all search results for the specified search query from the database.
+
+#### **GET** `/api/SearchResults/Url/{url}`
+- **Description:** Retrieves all search results for the specified URL from the database.
+
+#### **GET** `/api/SearchResults/QueryUrl/{searchQuery}/{url}`
+- **Description:** Retrieves all search results for the specified search query and URL combination from the database.
+
+#### **GET** `/api/SearchResults/AfterDate?searchDate={searchDate}`
+- **Description:** Retrieves all search results that were created after the specified date.
+
+#### **GET** `/api/SearchResults/ByQueryUrlDate?searchDate={searchDate}&searchQuery={searchQuery}&url={url}`
+- **Description:** Retrieves all search results for the specified search query, URL, and date combination.
 
 ---
 
@@ -139,4 +130,4 @@ policy.WithOrigins("https://yourfrontenddomain.com")
 
 ## **Future Improvements**
 - Add more endpoints that scrape other search engines. Add a dropdown option to the react component that lets you specify which search engine to use.
-- Add a database and repository service - use this to store previous results and then collate them into graphs for a visualisation of previous searches. 
+- Utilise the data stored in more ways, to give CEO more useful information. 

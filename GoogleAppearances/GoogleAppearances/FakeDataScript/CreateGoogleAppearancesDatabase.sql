@@ -1,6 +1,7 @@
 ﻿DECLARE @StartDate DATE = GETDATE();
 
-INSERT INTO SearchResults (SearchQuery, Url, Positions, SearchDate)
+INSERT INTO GoogleAppearancesDB.dbo.SearchResults 
+    (SearchQuery, Url, Positions, SearchDate)
 VALUES
     ('land-registry-searches', 'https://www.infotrack.co.uk/', '1,3,42,65', DATEADD(DAY, -1, @StartDate)),
     ('land-registry-searches', 'https://www.infotrack.co.uk/', '2,4,33', DATEADD(DAY, -2, @StartDate)),

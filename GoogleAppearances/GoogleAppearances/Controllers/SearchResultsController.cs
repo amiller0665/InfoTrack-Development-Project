@@ -25,7 +25,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
 
     // Get search results by query
     [HttpGet]
-    [Route("query/{searchQuery}")]
+    [Route("Query/{searchQuery}")]
     public ActionResult<List<SearchResults>> GetSearchResultsByQuery(string searchQuery)
     {
         try
@@ -41,7 +41,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
     }
 
     [HttpGet]
-    [Route("url/{url}")]
+    [Route("Url/{url}")]
     public ActionResult<List<SearchResults>> GetSearchResultsByUrl(string url)
     {
         try
@@ -58,7 +58,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
     }
 
     [HttpGet]
-    [Route("query-url/{searchQuery}/{url}")]
+    [Route("QueryUrl/{searchQuery}/{url}")]
     public ActionResult<List<SearchResults>> GetSearchResultsByQueryAndUrl(
         string searchQuery,
         string url)
@@ -77,7 +77,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
     }
 
     [HttpGet]
-    [Route("after-date")]
+    [Route("AfterDate")]
     public ActionResult<List<SearchResults>> GetSearchResultsAfterDate([FromQuery] DateTime searchDate)
     {
         try
@@ -93,7 +93,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
     }
 
     [HttpGet]
-    [Route("by-query-url-date")]
+    [Route("ByQueryUrlDate")]
     public ActionResult<List<SearchResults>> GetSearchResultsByQueryUrlDate(
         [FromQuery] DateTime searchDate,
         [FromQuery] string searchQuery,
