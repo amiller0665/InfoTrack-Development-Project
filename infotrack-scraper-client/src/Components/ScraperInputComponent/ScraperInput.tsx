@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ScraperInput.css';
-import { fetchGoogleAppearances } from '../FetchGoogleAppearancesComponent/fetchGoogleAppearances';
+import { fetchGoogleAppearances } from '../FetchComponents/fetchGoogleAppearances';
+import SearchResultsGraph from '../SearchResultsGraphComponent/SearchResultsGraph';
 
 const ScraperInput = () => {
   const [query, setQuery] = useState('');
@@ -8,7 +9,8 @@ const ScraperInput = () => {
   const [results, setResults] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [hasSearched, setHasSearched] = useState(false); // New state to track if a search has been attempted
+  const [hasSearched, setHasSearched] = useState(false);
+  const [showGraph, setShowGraph] = useState(false);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
@@ -28,13 +30,25 @@ const ScraperInput = () => {
     try {
       const data = await fetchGoogleAppearances(query, url);
       setResults(data);
-      setHasSearched(true); // Mark that a search has been attempted
+      setHasSearched(true);
     } catch (err) {
       console.error('Error fetching data:', err);
       setError('There was an error with the request.');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleShowGraph = () => {
+    if (!query || !url) {
+      setError('Please enter both a search phrase and a matching URL.');
+      return;
+    }
+    setShowGraph(true);
+  };
+
+  const handleHideGraph = () => {
+    setShowGraph(false);
   };
 
   return (
@@ -53,7 +67,14 @@ const ScraperInput = () => {
         placeholder="Enter the matching URL"
         className="input-field"
       />
-      <button onClick={handleSearch}>Search</button>
+      <div className="button-container">
+        <button onClick={handleSearch} className="search-button">Search</button>
+        {showGraph ? (
+          <button onClick={handleHideGraph} className="search-button">Hide Graph</button>
+        ) : (
+          <button onClick={handleShowGraph} className="search-button">Show Graph</button>
+        )}
+      </div>
       {loading && (
         <div className="loading-container">
           <div className="throbber"></div>
@@ -78,6 +99,7 @@ const ScraperInput = () => {
           </p>
         </div>
       )}
+      {showGraph && <SearchResultsGraph query={query} url={url} />}
     </div>
   );
 };

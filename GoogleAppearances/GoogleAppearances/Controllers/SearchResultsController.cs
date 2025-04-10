@@ -24,7 +24,8 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
     }
 
     // Get search results by query
-    [HttpGet("query/{searchQuery}")]
+    [HttpGet]
+    [Route("query/{searchQuery}")]
     public ActionResult<List<SearchResults>> GetSearchResultsByQuery(string searchQuery)
     {
         try
@@ -39,12 +40,14 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         }
     }
 
-    [HttpGet("url/{searchQuery}")]
+    [HttpGet]
+    [Route("url/{url}")]
     public ActionResult<List<SearchResults>> GetSearchResultsByUrl(string url)
     {
         try
         {
-            var results = searchResultRepository.GetSearchResultsByUrl(url);
+            var decodedUrl = Uri.UnescapeDataString(url);
+            var results = searchResultRepository.GetSearchResultsByUrl(decodedUrl);
             return Ok(results);
         }
         catch (Exception ex)
@@ -54,25 +57,27 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         }
     }
 
-    [HttpGet("query-url/{searchQuery}/{url}")]
+    [HttpGet]
+    [Route("query-url/{searchQuery}/{url}")]
     public ActionResult<List<SearchResults>> GetSearchResultsByQueryAndUrl(
         string searchQuery,
         string url)
     {
         try
         {
-            var results = searchResultRepository.GetSearchResultsByQueryAndUrl(searchQuery, url);
+            var decodedUrl = Uri.UnescapeDataString(url);
+            var results = searchResultRepository.GetSearchResultsByQueryAndUrl(searchQuery, decodedUrl);
             return Ok(results);
         }
         catch (Exception ex)
         {
-            // Log the exception details
             logger.LogError(ex, "An error occurred while retrieving search results.");
             return StatusCode(500, "An error occurred while retrieving search results by query and URL.");
         }
     }
 
-    [HttpGet("after-date")]
+    [HttpGet]
+    [Route("after-date")]
     public ActionResult<List<SearchResults>> GetSearchResultsAfterDate([FromQuery] DateTime searchDate)
     {
         try
@@ -87,7 +92,8 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         }
     }
 
-    [HttpGet("by-query-url-date")]
+    [HttpGet]
+    [Route("by-query-url-date")]
     public ActionResult<List<SearchResults>> GetSearchResultsByQueryUrlDate(
         [FromQuery] DateTime searchDate,
         [FromQuery] string searchQuery,

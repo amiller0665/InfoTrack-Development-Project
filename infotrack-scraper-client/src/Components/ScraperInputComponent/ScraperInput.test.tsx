@@ -1,9 +1,8 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ScraperInput from './ScraperInput';
-import { fetchGoogleAppearances } from '../FetchGoogleAppearancesComponent/fetchGoogleAppearances';
+import { fetchGoogleAppearances } from '../FetchComponents/fetchGoogleAppearances';
 
-// Mock the fetchGoogleAppearances function
 jest.mock('../FetchGoogleAppearancesComponent/fetchGoogleAppearances', () => ({
   fetchGoogleAppearances: jest.fn(),
 }));

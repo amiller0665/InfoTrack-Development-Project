@@ -141,3 +141,25 @@
   margin-top: 10px;
   font-family: 'Lato', Arial, sans-serif;
 }
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgba(6, 150, 183, 0.7);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}

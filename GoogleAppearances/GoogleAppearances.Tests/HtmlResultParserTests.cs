@@ -76,7 +76,7 @@ public class HtmlResultParserTests
 
         // Assert
         Assert.That(result.Count, Is.EqualTo(2));
-        Assert.That(result[0], Is.EqualTo("")); // Empty/malformed href is preserved
+        Assert.That(result[0], Is.EqualTo(""));
         Assert.That(result[1], Is.EqualTo("http://example2.com"));
     }
 
