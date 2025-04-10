@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAppearances", "Google
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAppearances.Services", "GoogleAppearances.Services\GoogleAppearances.Services.csproj", "{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAppearances.Tests", "GoogleAppearances.Tests\GoogleAppearances.Tests.csproj", "{68C4B73D-A64B-4897-B244-E0780E4A0304}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAppearances.Tests", "GoogleAppearances.Tests\GoogleAppearances.Tests.csproj", "{8427C56A-6621-47ED-B9B5-3157286F64D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +20,9 @@ Global
 		{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60115D34-B5B1-45BE-8CA9-92DFC1F5B943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68C4B73D-A64B-4897-B244-E0780E4A0304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68C4B73D-A64B-4897-B244-E0780E4A0304}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68C4B73D-A64B-4897-B244-E0780E4A0304}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68C4B73D-A64B-4897-B244-E0780E4A0304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8427C56A-6621-47ED-B9B5-3157286F64D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8427C56A-6621-47ED-B9B5-3157286F64D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8427C56A-6621-47ED-B9B5-3157286F64D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8427C56A-6621-47ED-B9B5-3157286F64D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

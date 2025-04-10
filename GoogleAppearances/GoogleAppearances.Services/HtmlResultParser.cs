@@ -24,7 +24,7 @@ public static class HtmlResultParser
         return results;
     }
     
-    private static string StripHtmlTags(string input)
+    public static string StripHtmlTags(string input)
     {
         // Strip all HTML tags from the input string
         return Regex.Replace(input, "<.*?>", string.Empty);
