@@ -24,6 +24,8 @@
                 // Build Google Search URL with top 100 results
                 var googleSearchUrl = $"https://www.google.co.uk/search?num=100&q={searchQuery}";
                 
+                //Google uses javascript to display the results,
+                //so we need to add a user-agent to mimic that behaviour and get the results
                 _httpClient.DefaultRequestHeaders.Add("User-Agent", "Lynx/2.8.6rel.5 libwww-FM/2.14");
                 var response = _httpClient.GetAsync(googleSearchUrl).Result;
 

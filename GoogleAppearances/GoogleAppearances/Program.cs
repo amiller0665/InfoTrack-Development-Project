@@ -2,9 +2,6 @@ using GoogleAppearances.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-
 builder.Services.AddHttpClient<IGoogleSearchScraperService, GoogleSearchScraperService>()
     .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
     {
@@ -13,25 +10,23 @@ builder.Services.AddHttpClient<IGoogleSearchScraperService, GoogleSearchScraperS
 
 builder.Services.AddCors(options =>  
 {  
-    options.AddDefaultPolicy(
+    options.AddPolicy( "ReactCorsPolicy",
         policy  =>  
         {  
-            policy.WithOrigins("http://localhost:3000/")
+            policy.WithOrigins("http://localhost:3000")
                 .AllowAnyHeader()  
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowCredentials();
         });  
 });  
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
+app.UseCors("ReactCorsPolicy");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
-app.UseCors();
-
 app.MapControllers();
-
 app.Run();
 

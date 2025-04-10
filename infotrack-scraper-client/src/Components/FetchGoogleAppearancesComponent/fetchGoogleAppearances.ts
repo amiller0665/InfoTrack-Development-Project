@@ -15,8 +15,7 @@ export const fetchGoogleAppearances = async (searchPhrase: string, url: string):
       headers: {
         'Content-Type': 'application/json',
       },
-      mode: 'cors',
-      credentials: 'include'
+      mode: 'cors'
     }
   );
 
