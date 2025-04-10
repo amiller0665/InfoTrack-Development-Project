@@ -1,5 +1,6 @@
 ﻿using GoogleAppearances.Repository.Models;
 using GoogleAppearances.Repository.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace GoogleAppearances.Services
 {
@@ -8,7 +9,8 @@ namespace GoogleAppearances.Services
         List<string> ScrapeGoogleSearchResults(string searchQuery, string uri);
     }
     
-    public class GoogleSearchScraperService(HttpClient httpClient, ISearchResultRepository searchResultRepository) : IGoogleSearchScraperService
+    public class GoogleSearchScraperService(HttpClient httpClient, ISearchResultRepository searchResultRepository,
+        ILogger<GoogleSearchScraperService> logger) : IGoogleSearchScraperService
     {
         private readonly HttpClient _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
 
@@ -41,6 +43,7 @@ namespace GoogleAppearances.Services
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    logger.LogError($"Failed to fetch search results. Status code: {response.StatusCode}");
                     throw new HttpRequestException($"Failed to fetch search results. Status code: {response.StatusCode}");
                 }
                 
@@ -69,7 +72,8 @@ namespace GoogleAppearances.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"An error occurred while scraping: {ex.Message}", ex);
+                logger.LogError(ex, "An error occurred while scraping.");
+                throw;
             }
         }
     }

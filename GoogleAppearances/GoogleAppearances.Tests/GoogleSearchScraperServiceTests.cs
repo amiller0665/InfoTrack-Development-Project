@@ -2,6 +2,7 @@
 using GoogleAppearances.Repository.Models;
 using GoogleAppearances.Repository.Repositories;
 using GoogleAppearances.Services;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
 using NUnit.Framework;
@@ -12,8 +13,9 @@ namespace GoogleAppearances.Tests;
 public class GoogleSearchScraperServiceTests
 {
     private GoogleSearchScraperService _service;
-    private Mock<ISearchResultRepository> _mockRepository;
+    private Mock<ISearchResultRepository> _repositoryMock;
     private Mock<HttpMessageHandler> _httpMessageHandlerMock;
+    private Mock<ILogger<GoogleSearchScraperService>> _loggerMock;
 
     // Mocked HTML response to return in all HTTP requests
     private const string MockHtmlResponse = @"
@@ -34,9 +36,9 @@ public class GoogleSearchScraperServiceTests
         // Mock HttpClient
         _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
 
-        _mockRepository = new Mock<ISearchResultRepository>();
-        
-        _mockRepository.SetReturnsDefault(new List<SearchResults>());
+        _repositoryMock = new Mock<ISearchResultRepository>();
+        _loggerMock = new Mock<ILogger<GoogleSearchScraperService>>();
+        _repositoryMock.SetReturnsDefault(new List<SearchResults>());
 
         _httpMessageHandlerMock
             .Protected()
@@ -53,7 +55,7 @@ public class GoogleSearchScraperServiceTests
         var httpClient = new HttpClient(_httpMessageHandlerMock.Object);
 
         // Initialize service with mocked HttpClient
-        _service = new GoogleSearchScraperService(httpClient, _mockRepository.Object);
+        _service = new GoogleSearchScraperService(httpClient, _repositoryMock.Object, _loggerMock.Object);
     }
     
     [Test]

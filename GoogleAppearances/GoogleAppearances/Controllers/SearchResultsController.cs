@@ -6,7 +6,8 @@ namespace GoogleAppearances.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class SearchResultsController(ISearchResultRepository searchResultRepository) : ControllerBase
+public class SearchResultsController(ISearchResultRepository searchResultRepository, 
+    ILogger<GoogleAppearancesController> logger) : ControllerBase
 {
     ActionResult<List<SearchResults>> GetAllSearchResults()
     {
@@ -17,8 +18,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         }
         catch (Exception ex)
         {
-            // Log the exception details (optional: use a logging service)
-            Console.Error.WriteLine($"Error: {ex.Message}");
+            logger.LogError(ex, "An error occurred while retrieving all search results.");
             return StatusCode(500, "An error occurred while retrieving all search results.");
         }
     }
@@ -34,7 +34,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Error: {ex.Message}");
+            logger.LogError(ex, "An error occurred while retrieving search results.");
             return StatusCode(500, "An error occurred while retrieving search results by query.");
         }
     }
@@ -49,7 +49,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Error: {ex.Message}");
+            logger.LogError(ex, "An error occurred while retrieving all search results.");
             return StatusCode(500, "An error occurred while retrieving search results by URL.");
         }
     }
@@ -67,7 +67,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         catch (Exception ex)
         {
             // Log the exception details
-            Console.Error.WriteLine($"Error: {ex.Message}");
+            logger.LogError(ex, "An error occurred while retrieving search results.");
             return StatusCode(500, "An error occurred while retrieving search results by query and URL.");
         }
     }
@@ -82,7 +82,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Error: {ex.Message}");
+            logger.LogError(ex, "An error occurred while retrieving search results.");
             return StatusCode(500, "An error occurred while retrieving search results after the specified date.");
         }
     }
@@ -100,7 +100,7 @@ public class SearchResultsController(ISearchResultRepository searchResultReposit
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine($"Error: {ex.Message}");
+            logger.LogError(ex, "An error occurred while retrieving search results.");
             return StatusCode(500, "An error occurred while retrieving search results by query, URL, and date.");
         }
     }
