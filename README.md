@@ -5,14 +5,7 @@ This project consists of 2 components, in the back-end is the **GoogleAppearance
 
 The GoogleAppearances Web Api is a web service designed to scrape Google search results and identify the positions where a specific URL appears. This API accepts a search query and a target URL, performs a Google search, and returns a list of indices where the target URL appears in the search results. The project also contains a repository that has a database attached to it. I added the database so that the user does not need to search google again everytime they want to see a result. Instead the days search is stored in the database, and we check if there is already a search result for that day if the user searches again and return that instead.
 
-The react front-end is a simple SPA that takes a google search phrase and matching url and fetches the data from the backend and then displays the results. I also added a simple graph component to display the number of appearances a target url made for a specific search phrase over the last 7 days. 
-
-## **Requirements**
-To run and develop this project, the following tools are required:
-- **.NET 7+ or higher** (for the API backend)
-- **Node.js** (for the React front-end)
-- **Visual Studio 2022/JetBrains Rider** (or any compatible C# IDE)
-- **Google search API accessibility** (via HTTP scraping)
+The React front-end is a simple SPA that takes a google search phrase and matching url and fetches the data from the backend and then displays the results. I also added a simple graph component to display the number of appearances a target url made for a specific search phrase over the last 7 days. 
 
 ## Getting Started
 
