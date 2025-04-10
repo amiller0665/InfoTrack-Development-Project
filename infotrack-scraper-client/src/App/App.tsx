@@ -1,6 +1,6 @@
 import ScraperInput from '../Components/ScraperInputComponent/ScraperInput';
 import './App.css';
-import infoTrackLogo from '../Assets/InfoTrackLogo.png'; // Adjust the path if necessary
+import infoTrackLogo from '../Assets/InfoTrackLogo.png';
 
 function App() {
   return (
