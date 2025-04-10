@@ -42,7 +42,7 @@
                 {
                     if (resultUrls[i].IndexOf(url, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        matchingIndices.Add(i);
+                        matchingIndices.Add(i+1); // We want results to start from 1
                     }
                 }
 
