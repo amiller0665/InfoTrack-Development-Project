@@ -47,7 +47,7 @@ const SearchResultsGraph: React.FC<SearchResultsGraphProps> = ({ query, url }) =
 
     fetchGraphData();
   }, [query, url]);
-  
+
   const chartData = {
     labels: labels,
     datasets: [

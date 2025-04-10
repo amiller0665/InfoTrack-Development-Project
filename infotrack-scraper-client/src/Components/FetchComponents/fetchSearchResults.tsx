@@ -17,7 +17,7 @@ export const fetchSearchResults = async (searchPhrase: string, url: string): Pro
   const encodedUrl = encodeURIComponent(url.trim());
 
   const response = await fetch(
-    `${config.apiBaseUrl}/api/SearchResults/query-url/${formattedQuery}/${encodedUrl}`,
+    `${config.apiBaseUrl}/api/SearchResults/QueryUrl/${formattedQuery}/${encodedUrl}`,
     {
       method: 'GET',
       headers: {
