@@ -19,7 +19,7 @@ To run and develop this project, the following tools are required:
 ### **Clone the Repository**
 Clone the repository to get started:
 ```bash
-git clone https://github.com/amiller0665/InfoTrack-Development-Project
+git clone https://github.com/amiller0665/InfoTrack-Development-Project.git
 cd InfoTrack-Development-Project
 ```
 
