@@ -1,15 +1,18 @@
-﻿namespace GoogleAppearances.Services
+﻿using GoogleAppearances.Repository.Models;
+using GoogleAppearances.Repository.Repositories;
+
+namespace GoogleAppearances.Services
 {
     public interface IGoogleSearchScraperService
     {
-        List<int> ScrapeGoogleSearchResults(string searchQuery, string uri);
+        List<string> ScrapeGoogleSearchResults(string searchQuery, string uri);
     }
     
-    public class GoogleSearchScraperService(HttpClient httpClient) : IGoogleSearchScraperService
+    public class GoogleSearchScraperService(HttpClient httpClient, ISearchResultRepository searchResultRepository) : IGoogleSearchScraperService
     {
         private readonly HttpClient _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
 
-        public List<int> ScrapeGoogleSearchResults(string searchQuery, string uri)
+        public List<string> ScrapeGoogleSearchResults(string searchQuery, string uri)
         {
             if (string.IsNullOrWhiteSpace(searchQuery))
             {
@@ -20,6 +23,13 @@
             {
                 //convert URI back to original string format
                 var url = Uri.UnescapeDataString(uri);
+
+                var existingResults = searchResultRepository.GetSearchResultsByQueryUrlDate(DateTime.Today, searchQuery, url);
+
+                if (existingResults.Any())
+                {
+                    return existingResults.First().Positions.Split(',').ToList();
+                }
                 
                 // Build Google Search URL with top 100 results
                 var googleSearchUrl = $"https://www.google.co.uk/search?num=100&q={searchQuery}";
@@ -37,14 +47,23 @@
                 var resultUrls = HtmlResultParser.ParseHtml(response.Content.ReadAsStringAsync().Result);
 
                 // Match the urls to the search url (case-insensitive) and collect the matching indices
-                var matchingIndices = new List<int>();
+                var matchingIndices = new List<string>();
                 for (var i = 0; i < resultUrls.Count; i++)
                 {
                     if (resultUrls[i].IndexOf(url, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        matchingIndices.Add(i+1); // We want results to start from 1
+                        matchingIndices.Add((i+1).ToString()); // We want results to start from 1
                     }
                 }
+                
+                // Save the results to the database
+                searchResultRepository.AddSearchResult(new SearchResults()
+                {
+                    SearchQuery = searchQuery,
+                    Url = url,
+                    SearchDate = DateTime.Today,
+                    Positions = string.Join(",", matchingIndices)
+                });
 
                 return matchingIndices;
             }

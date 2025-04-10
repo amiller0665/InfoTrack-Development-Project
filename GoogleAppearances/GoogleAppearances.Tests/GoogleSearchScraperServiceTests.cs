@@ -1,4 +1,6 @@
 ﻿using System.Net;
+using GoogleAppearances.Repository.Models;
+using GoogleAppearances.Repository.Repositories;
 using GoogleAppearances.Services;
 using Moq;
 using Moq.Protected;
@@ -10,6 +12,7 @@ namespace GoogleAppearances.Tests;
 public class GoogleSearchScraperServiceTests
 {
     private GoogleSearchScraperService _service;
+    private Mock<ISearchResultRepository> _mockRepository;
     private Mock<HttpMessageHandler> _httpMessageHandlerMock;
 
     // Mocked HTML response to return in all HTTP requests
@@ -31,6 +34,10 @@ public class GoogleSearchScraperServiceTests
         // Mock HttpClient
         _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
 
+        _mockRepository = new Mock<ISearchResultRepository>();
+        
+        _mockRepository.SetReturnsDefault(new List<SearchResults>());
+
         _httpMessageHandlerMock
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
@@ -46,7 +53,7 @@ public class GoogleSearchScraperServiceTests
         var httpClient = new HttpClient(_httpMessageHandlerMock.Object);
 
         // Initialize service with mocked HttpClient
-        _service = new GoogleSearchScraperService(httpClient);
+        _service = new GoogleSearchScraperService(httpClient, _mockRepository.Object);
     }
     
     [Test]
@@ -79,7 +86,7 @@ public class GoogleSearchScraperServiceTests
         // Assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result.Count, Is.EqualTo(1));
-        Assert.That(result[0], Is.EqualTo(5));
+        Assert.That(result[0], Is.EqualTo("6"));
     }
 
     [Test]
@@ -94,8 +101,8 @@ public class GoogleSearchScraperServiceTests
         // Assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result.Count, Is.EqualTo(2));
-        Assert.That(result.Contains(2));
-        Assert.That(result.Contains(4));
+        Assert.That(result.Contains("3"));
+        Assert.That(result.Contains("5"));
     }
 
     [Test]
@@ -124,7 +131,7 @@ public class GoogleSearchScraperServiceTests
         // Assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result.Count, Is.EqualTo(2));
-        Assert.That(result.Contains(2));
-        Assert.That(result.Contains(4));
+        Assert.That(result.Contains("3"));
+        Assert.That(result.Contains("5"));
     }
 }

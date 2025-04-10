@@ -28,9 +28,30 @@ cd InfoTrack-Development-Project
 ### **Backend Setup**
 
 1. **Install Requirements**
-   Install the required .NET SDK (7.0 or higher).
+  Install the required .NET SDK (7.0 or higher). To Set-up the database, we need to create it via EntityFrameworkCore. Please ensure that you have dotnet tools installed and dotnet-ef.
 
-2. **Run the Project**
+  ```bash
+  dotnet tool install --global dotnet-ef
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  ```
+
+  You will also need to have SQL Express locally installed. You can check that with the following command:
+
+  ```bash
+  sqllocaldb info
+  ```
+
+2. **Ensure the database is correctly created**
+  Please run the following in the .\GoogleAppearances\GoogleAppearances directory:
+
+  ```bash
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+  ```
+
+  You should be able to see the table created in your local db server: (localdb)\MSSQLLocalDB
+
+3. **Run the Project**
    You can either use Visual Studio or the CLI to run the application:
    - **Via Visual Studio:**
      Open the solution and press `F5` to start the application.
@@ -39,12 +60,12 @@ cd InfoTrack-Development-Project
      dotnet run --project GoogleAppearances
      ```
 
-3. **Default URLs for Local Development**
+4. **Default URLs for Local Development**
    After starting the application:
    - HTTP: `http://localhost:5287`
    - HTTPS: `https://localhost:7048`
 
-4. **Edit Your Environment**
+5. **Edit Your Environment**
    - Ensure the CORS policy in `Program.cs` matches the domain of any front-end app.
      Default setup:
      ```csharp

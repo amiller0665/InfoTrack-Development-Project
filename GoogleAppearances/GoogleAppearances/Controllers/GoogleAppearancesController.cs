@@ -10,7 +10,7 @@ namespace GoogleAppearances.Controllers
         // GET: api/GoogleAppearances
         [HttpGet]
         [Route("GetCurrentAppearances/{query}/{url}")]
-        public ActionResult<List<int>> GoogleAppearances(string query, string url)
+        public ActionResult<List<string>> GoogleAppearances(string query, string url)
         {
             if (string.IsNullOrEmpty(query) || string.IsNullOrEmpty(url))
                 return BadRequest("Request parameters cannot be null or empty.");

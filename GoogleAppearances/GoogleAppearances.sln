@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAppearances.Services"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAppearances.Tests", "GoogleAppearances.Tests\GoogleAppearances.Tests.csproj", "{8427C56A-6621-47ED-B9B5-3157286F64D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAppearances.Repository", "GoogleAppearances.Repository\GoogleAppearances.Repository.csproj", "{48A93A31-4737-4431-BF58-1EB6A681DABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{8427C56A-6621-47ED-B9B5-3157286F64D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8427C56A-6621-47ED-B9B5-3157286F64D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8427C56A-6621-47ED-B9B5-3157286F64D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48A93A31-4737-4431-BF58-1EB6A681DABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48A93A31-4737-4431-BF58-1EB6A681DABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48A93A31-4737-4431-BF58-1EB6A681DABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48A93A31-4737-4431-BF58-1EB6A681DABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
